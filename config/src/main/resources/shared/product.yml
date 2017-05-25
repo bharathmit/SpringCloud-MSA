@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: product
+  datasource.url: jdbc:h2:~/product-service
+  jpa.hibernate.ddl-auto: update
+  jpa.properties.hibernate.show_sql: true
+server:
+  port: 8010
+  

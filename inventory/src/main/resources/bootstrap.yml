@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: inventory
+  cloud:
+    config:
+      uri: http://localhost:8000 
