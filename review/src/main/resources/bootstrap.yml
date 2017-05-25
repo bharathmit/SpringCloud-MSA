@@ -1,10 +1,6 @@
 spring:
   application:
     name: review
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+  cloud:
+    config:
+      uri: http://localhost:8000 

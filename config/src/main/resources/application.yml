@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: config
   cloud:
     config:
       server:
@@ -8,4 +10,4 @@ spring:
      active: native
 
 server:
-  port: 8888
+  port: 8000
