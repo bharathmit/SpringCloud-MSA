@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: gateway    
+
+server:
+  port: 8040
+ 
+zuul:
+  prefix: /api
+  routes:
+    product:
+        path: /products/**
+        serviceId: product                
+    inventory:
+        path: /inventorys/**
+        serviceId: inventory        
+    review:
+        path: /reviews/**
+        serviceId: review            

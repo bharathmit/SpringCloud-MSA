@@ -1,6 +1,6 @@
 spring:
   application:
-    name: inventory
+    name: gateway
   cloud:
     config:
       uri: http://localhost:8080 
