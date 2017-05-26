@@ -16,4 +16,8 @@ zuul:
         serviceId: inventory        
     review:
         path: /reviews/**
-        serviceId: review            
+        serviceId: review
+    productinfo:
+        path: /productinfo/**
+        serviceId: productinfo       
+              
