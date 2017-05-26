@@ -9,3 +9,4 @@ Use full Link:
 
 3.http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/
 
+4.http://cloud.spring.io/spring-cloud-static/Brixton.SR6/#_circuit_breaker_hystrix_clients
