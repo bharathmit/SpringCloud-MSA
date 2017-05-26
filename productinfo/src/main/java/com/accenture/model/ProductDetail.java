@@ -1,6 +1,7 @@
 package com.accenture.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,22 +9,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Inventory implements Serializable {
+public class ProductDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Getter
 	@Setter
-	private long id;
-
+	Inventory inventory;
+	
 	@Getter
 	@Setter
-	private long prodId;
-
+	List<Review> review;
+	
 	@Getter
 	@Setter
-	private int qty;
-
-	@Getter
-	@Setter
-	private double price;
+	Product product;
+	
+	
 }

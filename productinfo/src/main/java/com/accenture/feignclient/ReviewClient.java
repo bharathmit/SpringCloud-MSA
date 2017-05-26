@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.accenture.model.Review;
 
+
 @FeignClient(name = "review")
 public interface ReviewClient {
 	
 	@RequestMapping(value="/reviews/{id}",method=RequestMethod.GET)
 	public List<Review> getReviewByProductId(@PathVariable("id") final Long id);
-
+	
 }
