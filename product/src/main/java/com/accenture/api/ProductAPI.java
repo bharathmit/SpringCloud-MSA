@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.entity.Product;
 import com.accenture.repo.ProductJPARepo;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 @RequestMapping("/products")
@@ -21,6 +22,7 @@ public class ProductAPI {
 	@Autowired
 	ProductJPARepo productJPARepo;
 	
+	@HystrixCommand(fallbackMethod = "fallbackProduct")
 	@RequestMapping(method=RequestMethod.POST)
 	public Product addProduct(@RequestBody Product product){
 		return productJPARepo.saveAndFlush(product);
@@ -47,6 +49,9 @@ public class ProductAPI {
 		return new ResponseEntity<String>("Invoice deleted from table", HttpStatus.OK);	
 	}
 	
+	public Product fallbackProduct(Product product) {
+		return new Product();
+	}
 	
 	
 	
