@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: oauth
+  datasource.url: jdbc:h2:~/oauth-service
+  jpa.hibernate.ddl-auto: update
+  jpa.properties.hibernate.show_sql: true
+server:
+  context-path: /uaa
+  port: 8090
+  
