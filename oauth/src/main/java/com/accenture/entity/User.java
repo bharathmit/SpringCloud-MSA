@@ -28,8 +28,9 @@ public class User implements UserDetails {
 	private String username;
 
 	@Column(nullable = false)
-	private String password;
-
+	private String password;		
+	
+	
 	@Override
 	public String getPassword() {
 		return password;

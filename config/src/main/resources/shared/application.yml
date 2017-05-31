@@ -5,6 +5,10 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
+logging:
+  level:
+    org.springframework.security: INFO
+
 hystrix:
   command:
     default:
@@ -16,4 +20,5 @@ hystrix:
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:8090/uaa/users/current            
+      user-info-uri: http://localhost:8090/uaa/users/current
+                  

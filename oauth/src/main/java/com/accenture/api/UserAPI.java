@@ -27,7 +27,7 @@ public class UserAPI {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void createUser(@Valid @RequestBody User user) {
+	public void createUser(@RequestBody User user) {
 		userService.create(user);
 	}
 }
