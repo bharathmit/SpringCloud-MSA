@@ -1,4 +1,4 @@
-package com.accenture.security;
+/*package com.accenture.security;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,12 +19,12 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 
 import java.util.*;
 
-/**
+*//**
  * Extended implementation of {@link org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices}
  *
  * By default, it designed to return only user details. This class provides {@link #getRequest(Map)} method, which
  * returns clientId and scope of calling service. This information used in controller's security checks.
- */
+ *//*
 
 public class CustomUserInfoTokenServices implements ResourceServerTokenServices {
 
@@ -136,3 +136,4 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
 		}
 	}
 }
+*/

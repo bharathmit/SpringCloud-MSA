@@ -28,9 +28,8 @@ import com.accenture.security.OAuthUserDetailsService;
 
 
 @SpringBootApplication
-@EnableDiscoveryClient 
+//@EnableDiscoveryClient 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableResourceServer
 public class OAthuApplication {
 
 	public static void main(String[] args) {
@@ -49,7 +48,7 @@ public class OAthuApplication {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			// @formatter:off
-			http.authorizeRequests()				
+			http.authorizeRequests()			
 				.anyRequest().authenticated()
 			.and()
 				.csrf().disable();

@@ -3,7 +3,6 @@ package com.accenture.api;
 
 import java.security.Principal;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,5 +28,10 @@ public class UserAPI {
 	@RequestMapping(method = RequestMethod.POST)
 	public void createUser(@RequestBody User user) {
 		userService.create(user);
+	}
+	
+	@RequestMapping(value = "/string", method = RequestMethod.GET)
+	public String getString() {
+		return "Hello";
 	}
 }

@@ -1,5 +1,8 @@
 package com.accenture.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -15,6 +18,7 @@ import lombok.Setter;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel( value = "Product", description = "Product resource representation" )
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,11 +27,13 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter
 	@Setter
+	@ApiModelProperty( value = "Product Id", required = true ) 
 	private long prodId;
 
 	@Column(length = 200)
 	@Getter
 	@Setter
+	@ApiModelProperty( value = "Product Description", required = true ) 
 	private String prodDescription;
 
 }

@@ -77,7 +77,7 @@
 	       <artifactId>spring-boot-starter-actuator</artifactId>
 	   	</dependency>
 	   	
-	   	<dependency>
+	   	<!-- <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-oauth2</artifactId>
 		</dependency>
@@ -88,7 +88,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-swagger2</artifactId>
