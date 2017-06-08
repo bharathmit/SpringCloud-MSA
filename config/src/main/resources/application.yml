@@ -4,10 +4,8 @@ spring:
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/shared
-  profiles:
-     active: native
-
+        git:
+          uri: https://github.com/bharathmit/cloud-config                 
+          
 server:
   port: 8080
