@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: productinfo  
-server:
-  port: 8050
-  

@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: monitoring  
-turbine:
-  appConfig: product,inventory,review,productinfo
-  clusterNameExpression: new String('default')      
-  
