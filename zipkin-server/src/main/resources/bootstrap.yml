@@ -1,9 +1,9 @@
 spring:
   application:
-    name: monitoring
+    name: zipkin-server
   cloud:
     config:
       uri: http://localhost:8080
 server:
-  port: 9410
+  port: 9411
       
