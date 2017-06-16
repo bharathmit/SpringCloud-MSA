@@ -55,7 +55,9 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.11</version>
-				<configuration>				
+				<configuration>		
+					<dockerHost>https://192.168.99.100:2376</dockerHost>	
+					<dockerCertPath>C:\Users\bharath\.docker\machine\machines\default</dockerCertPath>	
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>					
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
