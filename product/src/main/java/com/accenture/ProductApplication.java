@@ -24,6 +24,10 @@ import org.springframework.context.annotation.Bean;
 
 
 
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+
 /*import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
@@ -56,10 +60,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableCircuitBreaker
 @EnableHystrix 
-public class ProductApplication /*extends ResourceServerConfigurerAdapter*/  {
+public class ProductApplication extends WebMvcConfigurerAdapter /*extends ResourceServerConfigurerAdapter*/  {
 	
 	//@Autowired
 	//private ResourceServerProperties sso;
+	
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+	registry.addMapping("/**");
+	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProductApplication.class, args);

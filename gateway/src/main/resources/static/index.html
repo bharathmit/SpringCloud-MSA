@@ -1,0 +1,113 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+
+
+<h1>Spring Boot Micro Services Example Demo...</h1>
+
+<button ng-click="monitorAppInfo()">1.Config Management</button>
+<button ng-click="refresh()">Refresh</button>
+<h2>Refresh Env Value in running services :  {{monitorInfo}}</h2>
+<br>
+
+<a ng-href="" ng-click="redirectToRegistry()"><h2>2.Service Registry...</h2></a>
+<br>
+
+<button ng-click="balancing()">3.Load Balancing</button>
+<h2>Load Balancing (Product Service):  {{load}}</h2>
+<br>
+
+<a ng-href="" ng-click="redirectToSwagger()"><h2>4.Swagger API Documentation...</h2></a>
+<br>
+
+<button ng-click="apiGateWay()">5.API GateWay</button>
+<h2>Display the Product Details:  {{trackLog}}</h2>
+<br>
+
+
+<a ng-href="" ng-click="redirectToMonitor()"><h2>6.Monitor Rest API...</h2></a>
+<br>
+
+<a ng-href="" ng-click="redirectToTracking()"><h2>7.Tracking HTTP Request...</h2></a>
+<br>
+
+
+</div>
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http, $window) {
+  
+	$scope.monitorAppInfo = function () {
+	    $http.get('http://localhost:9411/info')
+	        .then(function (result) {
+	            $scope.monitorInfo = result.data;
+	            console.log(result);
+	        }, function(result) {
+	            //some error
+	            console.log(result);
+	        });
+	};
+	
+	$scope.refresh = function() {
+		
+		$http.post('http://localhost:9411/refresh')
+        .then(function (result) {
+            console.log(result);
+        }, function(result) {
+            //some error
+            console.log(result);
+        });
+		
+	 };
+	
+	
+	$scope.balancing = function () {
+	    $http.get('http://localhost:8040/api/product/info')
+	        .then(function (result) {
+	            $scope.load = result.data;
+	            console.log(result);
+	        }, function(result) {
+	            //some error
+	            console.log(result);
+	        });
+	};
+	
+	$scope.redirectToRegistry = function () {
+        $window.open('http://localhost:8761', '_blank');
+    };
+    
+    $scope.redirectToSwagger = function () {
+        $window.open('http://localhost:8040/swagger-ui.html', '_blank');
+    };
+    
+    
+    $scope.apiGateWay = function () {
+	    $http.get('http://localhost:8040/api/productinfo/productinfo/66')
+	        .then(function (result) {
+	            $scope.trackLog = result.data;
+	            console.log(result);
+	        }, function(result) {
+	            //some error
+	            console.log(result);
+	        });
+	};
+	
+	$scope.redirectToMonitor = function () {
+        $window.open('http://localhost:9410/hystrix', '_blank');
+    };
+    
+    $scope.redirectToTracking = function () {
+        $window.open('http://localhost:9411', '_blank');
+    };
+
+	
+	
+});
+</script>
+
+</body>
+</html>

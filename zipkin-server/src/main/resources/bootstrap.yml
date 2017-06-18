@@ -7,3 +7,6 @@ spring:
 server:
   port: 9411
       
+endpoints.cors.allowed-origins: http://localhost:8040
+endpoints.cors.allowed-methods: GET,POST  
+      
