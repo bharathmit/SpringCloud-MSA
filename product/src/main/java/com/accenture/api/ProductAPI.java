@@ -90,7 +90,7 @@ public class ProductAPI {
 	public ResponseEntity<String> deleteProduct(@PathVariable("productId") final Long productId){
 		LOG.info("Delete Product details");
 		productJPARepo.delete(productId);
-		return new ResponseEntity<String>("Product deleted from table", HttpStatus.OK);	
+		return new ResponseEntity<String>("[\"Product deleted from table\"]", HttpStatus.OK);	
 	}
 	
 	
@@ -107,7 +107,7 @@ public class ProductAPI {
 	
 	public ResponseEntity<String> fallbackDeleteProduct(Long productId) {
 		LOG.info("Fallback Method");
-		return new ResponseEntity<String>("Hystrix fallback", HttpStatus.OK);
+		return new ResponseEntity<String>("[\"Hystrix fallback\"]", HttpStatus.OK);
 	}
 	
 

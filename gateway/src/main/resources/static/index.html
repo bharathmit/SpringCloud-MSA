@@ -1,5 +1,43 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<head>
+<style>
+body {
+    color: blue;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    border: 2px solid #73AD21;
+    padding: 15px;
+}
+
+a {
+    color: green;
+}
+
+h1 {
+	text-align: center;
+	color: green;
+}
+
+</style>
+</head>
+
 <body>
 
 <div ng-app="myApp" ng-controller="myCtrl"> 
@@ -7,30 +45,55 @@
 
 <h1>Spring Boot Micro Services Example Demo...</h1>
 
-<button ng-click="monitorAppInfo()">1.Config Management</button>
-<button ng-click="refresh()">Refresh</button>
-<h2>Refresh Env Value in running services :  {{monitorInfo}}</h2>
+<button class="button" ng-click="monitorAppInfo()">1.Configuration Management</button>
+<button class="button" ng-click="refresh()">Refresh</button>
 <br>
-
-<a ng-href="" ng-click="redirectToRegistry()"><h2>2.Service Registry...</h2></a>
 <br>
-
-<button ng-click="balancing()">3.Load Balancing</button>
-<h2>Load Balancing (Product Service):  {{load}}</h2>
+<p class="center"><b>Changing Env Variables (Running Server) :</b>  {{monitorInfo.app.description}}</p>
 <br>
-
-<a ng-href="" ng-click="redirectToSwagger()"><h2>4.Swagger API Documentation...</h2></a>
-<br>
-
-<button ng-click="apiGateWay()">5.API GateWay</button>
-<h2>Display the Product Details:  {{trackLog}}</h2>
 <br>
 
 
-<a ng-href="" ng-click="redirectToMonitor()"><h2>6.Monitor Rest API...</h2></a>
+<a ng-href="" class="button" ng-click="redirectToRegistry()">2.Service Registry...</a>
+<br>
 <br>
 
-<a ng-href="" ng-click="redirectToTracking()"><h2>7.Tracking HTTP Request...</h2></a>
+<button class="button"  ng-click="balancing()">3.Load Balancing</button>
+<p class="center"><b>Load Balancing (Product API) :</b>  {{load.app.description}}</p>
+<br>
+<br>
+
+<a ng-href="" class="button" ng-click="redirectToSwagger()">4.Swagger API Documentation...</a>
+<br>
+<br>
+
+<button class="button" ng-click="apiGateWay()">5.API GateWay</button><input ng-model="productID">
+<p class="center"><b>Display the Product Details :</b> 
+<br>
+<br>
+         Product Name : {{trackLog.product.prodDescription}}
+<br>
+         Available Stock : {{trackLog.inventory.qty}} & Price : {{trackLog.inventory.price}}
+<br>
+        Product Review : {{trackLog.review[0].description}}
+</p>
+
+
+<br>
+<br>
+
+
+<a ng-href="" class="button" ng-click="redirectToMonitor()">6.Monitor REST API...</a>
+<button class="button" ng-click="deleteProduct()">Product Delete</button> <input ng-model="productID">
+<br>
+<br>
+<p class="center"><b>Response From Server :</b>  {{monitorlog}}</p>
+<br>
+<br>
+
+
+<a ng-href="" class="button" ng-click="redirectToTracking()">7.Tracking HTTP Request...</a>
+<br>
 <br>
 
 
@@ -40,9 +103,10 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http, $window) {
-  
+	 $scope.productID = "1";
+	 $scope.url="http://10.220.80.140";
 	$scope.monitorAppInfo = function () {
-	    $http.get('http://localhost:9411/info')
+	    $http.get($scope.url+':9411/info')
 	        .then(function (result) {
 	            $scope.monitorInfo = result.data;
 	            console.log(result);
@@ -54,7 +118,7 @@ app.controller('myCtrl', function($scope, $http, $window) {
 	
 	$scope.refresh = function() {
 		
-		$http.post('http://localhost:9411/refresh')
+		$http.post($scope.url+':9411/refresh')
         .then(function (result) {
             console.log(result);
         }, function(result) {
@@ -66,7 +130,7 @@ app.controller('myCtrl', function($scope, $http, $window) {
 	
 	
 	$scope.balancing = function () {
-	    $http.get('http://localhost:8040/api/product/info')
+	    $http.get('api/product/info')
 	        .then(function (result) {
 	            $scope.load = result.data;
 	            console.log(result);
@@ -77,16 +141,16 @@ app.controller('myCtrl', function($scope, $http, $window) {
 	};
 	
 	$scope.redirectToRegistry = function () {
-        $window.open('http://localhost:8761', '_blank');
+        $window.open($scope.url+':8761', '_blank');
     };
     
     $scope.redirectToSwagger = function () {
-        $window.open('http://localhost:8040/swagger-ui.html', '_blank');
+        $window.open('swagger-ui.html', '_blank');
     };
     
     
     $scope.apiGateWay = function () {
-	    $http.get('http://localhost:8040/api/productinfo/productinfo/66')
+	    $http.get('api/productinfo/productinfo/'+$scope.productID )
 	        .then(function (result) {
 	            $scope.trackLog = result.data;
 	            console.log(result);
@@ -97,11 +161,23 @@ app.controller('myCtrl', function($scope, $http, $window) {
 	};
 	
 	$scope.redirectToMonitor = function () {
-        $window.open('http://localhost:9410/hystrix', '_blank');
+        $window.open($scope.url+':9410/hystrix', '_blank');
     };
     
+    $scope.deleteProduct = function () {
+	    $http.delete('api/product/products/'+$scope.productID )
+	        .then(function (result) {
+	            $scope.monitorlog = result.data;
+	            console.log(result);
+	        }, function(result) {
+	            //some error
+	            console.log(result);
+	        });
+	};
+    
+    
     $scope.redirectToTracking = function () {
-        $window.open('http://localhost:9411', '_blank');
+        $window.open($scope.url+':9411', '_blank');
     };
 
 	
