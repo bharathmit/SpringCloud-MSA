@@ -49,7 +49,7 @@ h1 {
 <button class="button" ng-click="refresh()">Refresh</button>
 <br>
 <br>
-<p class="center"><b>Changing Env Variables (Running Server) :</b>  {{monitorInfo.app.description}}</p>
+<p class="center">Changing Env Variables (Running Server) : <b> {{monitorInfo.app.description}}</b> </p>
 <br>
 <br>
 
@@ -59,7 +59,7 @@ h1 {
 <br>
 
 <button class="button"  ng-click="balancing()">3.Load Balancing</button>
-<p class="center"><b>Load Balancing (Product API) :</b>  {{load.app.description}}</p>
+<p class="center">Load Balancing (Product API) :  <b>{{load.app.description}}</b></p>
 <br>
 <br>
 
@@ -71,11 +71,11 @@ h1 {
 <p class="center"><b>Display the Product Details :</b> 
 <br>
 <br>
-         Product Name : {{trackLog.product.prodDescription}}
+         Product Name : <b>{{trackLog.product.prodDescription}}</b>
 <br>
-         Available Stock : {{trackLog.inventory.qty}} & Price : {{trackLog.inventory.price}}
+         Available Stock : <b>{{trackLog.inventory.qty}}</b> & Price : <b>{{trackLog.inventory.price}}</b>
 <br>
-        Product Review : {{trackLog.review[0].description}}
+        Product Review : <b>{{trackLog.review[0].description}}</b>
 </p>
 
 
@@ -87,7 +87,7 @@ h1 {
 <button class="button" ng-click="deleteProduct()">Product Delete</button> <input ng-model="productID">
 <br>
 <br>
-<p class="center"><b>Response From Server :</b>  {{monitorlog}}</p>
+<p class="center">Response From Server :  <b>{{monitorlog}}</b></p>
 <br>
 <br>
 
