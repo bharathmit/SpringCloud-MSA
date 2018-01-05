@@ -2,6 +2,7 @@ package com.jsoftgroup.api;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+
 
 import com.jsoftgroup.entity.Inventory;
 import com.jsoftgroup.repo.InventoryJPARepo;
@@ -56,6 +59,23 @@ public class InventoryAPI {
 		return new ResponseEntity<String>("Inventory deleted from table", HttpStatus.OK);	
 	}
 	
+	public String getService(String name){
+		String value="User Not Found";
+		
+		if(StringUtils.isEmpty(name)){
+			value="Power Mock Test";
+		}
+		if("bharath".equalsIgnoreCase(name)){
+			value="Hello Bharath";
+		}
+		if("sriram".equalsIgnoreCase(name)){
+			value="Hello Sriram";
+		}
+		if(name.equalsIgnoreCase("pavithira")){
+			value="Hello Pavithira";
+		}
+		return value;
+	}
 	
 	
 	
