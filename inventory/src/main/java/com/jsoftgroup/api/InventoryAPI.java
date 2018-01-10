@@ -64,6 +64,7 @@ public class InventoryAPI {
 		
 		if(StringUtils.isEmpty(name)){
 			value="Power Mock Test";
+			inventoryJPARepo.deleteByProductId(1l);
 		}
 		if("bharath".equalsIgnoreCase(name)){
 			value="Hello Bharath";
