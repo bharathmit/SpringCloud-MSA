@@ -1,18 +1,17 @@
 package com.jsoftgroup.api;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 import io.swagger.annotations.AuthorizationScope;
-
-
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.ApiResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +25,8 @@ import com.jsoftgroup.entity.Product;
 import com.jsoftgroup.repo.ProductJPARepo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 
 @RestController
-@Api(value = "Product API", description = "Endpoint for Product Management")
 @RequestMapping("/products")
 public class ProductAPI {
 	
@@ -68,7 +63,7 @@ public class ProductAPI {
 	@RequestMapping(path="/{productId}",method=RequestMethod.GET)
 	public Product getProductById(@PathVariable("productId") final Long productId){
 		LOG.info("Returns Product detail");
-		return productJPARepo.findOne(productId);
+		return productJPARepo.getOne(productId);
 	}
 	
 	
@@ -90,7 +85,7 @@ public class ProductAPI {
 	@RequestMapping(path="/{productId}",method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProduct(@PathVariable("productId") final Long productId){
 		LOG.info("Delete Product details");
-		productJPARepo.delete(productId);
+		productJPARepo.deleteById(productId);
 		return new ResponseEntity<String>("[\"Product deleted from table\"]", HttpStatus.OK);	
 	}
 	

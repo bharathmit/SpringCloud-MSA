@@ -6,4 +6,11 @@ spring:
       uri: http://localhost:8080
 server:
   port: 9410
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+      base-path: /
       
