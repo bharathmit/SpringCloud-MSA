@@ -8,4 +8,4 @@ spring:
           uri: https://github.com/bharathmit/cloud-config                 
           
 server:
-  port: 8080
+  port: 8099
