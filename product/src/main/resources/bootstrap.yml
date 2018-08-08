@@ -18,16 +18,8 @@ management:
       exposure:
         include: "*"
 
-keycloak:
-  auth-server-url: http://localhost:8080/auth 
-  realm: master 
-  public-client: true 
-  resource: product-app
-  security-constraints[0]:
-    authRoles[0]: user 
-    securityCollections[0]:
-      patterns[0]: /products/*
-
-
+    
+    
+  
       
   

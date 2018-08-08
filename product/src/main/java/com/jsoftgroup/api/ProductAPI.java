@@ -10,8 +10,8 @@ import io.swagger.annotations.AuthorizationScope;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 @RequestMapping("/products")
 public class ProductAPI {
 	
-	private static final Log LOG = LogFactory.getLog(ProductAPI.class.getName());
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	ProductJPARepo productJPARepo;
@@ -41,7 +41,7 @@ public class ProductAPI {
 			authorizations = { @Authorization(value = "OAuth2 authorization resource" , scopes = { @AuthorizationScope(scope = "server", description = "")} ) } )
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful added into Product details", response = Product.class)})
 	public Product addProduct(@RequestBody Product product){
-		LOG.info("Add Product details");
+		LOGGER.info("Add Product details");
 		return productJPARepo.saveAndFlush(product);
 	}
 	
@@ -52,7 +52,11 @@ public class ProductAPI {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful retrieval of All Product details", response = Product.class)})
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Product> getProducts(){
-		LOG.info("List all Product");
+		LOGGER.trace("This is a trace message. ");
+		LOGGER.debug("This is a debug message.");
+		LOGGER.info("This is an info message.");
+		LOGGER.warn("This is a warn message.");
+		LOGGER.error("This is an error message.");
 		return productJPARepo.findAll();
 	}
 	
@@ -62,7 +66,7 @@ public class ProductAPI {
 	@ApiParam(name = "productId", value = "Unique ID for Product Item ", required = true)
 	@RequestMapping(path="/{productId}",method=RequestMethod.GET)
 	public Product getProductById(@PathVariable("productId") final Long productId){
-		LOG.info("Returns Product detail");
+		LOGGER.info("Returns Product detail");
 		return productJPARepo.getOne(productId);
 	}
 	
@@ -72,7 +76,7 @@ public class ProductAPI {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful updated into Product detail", response = Product.class)})
 	@RequestMapping(method=RequestMethod.PUT)
 	public Product updateProduct(@RequestBody Product product){
-		LOG.info("Update Product Details");
+		LOGGER.info("Update Product Details");
 		return productJPARepo.saveAndFlush(product);
 	}
 	
@@ -84,25 +88,25 @@ public class ProductAPI {
 	@ApiParam(name = "productId", value = "Unique ID for Product Item ", required = true)
 	@RequestMapping(path="/{productId}",method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProduct(@PathVariable("productId") final Long productId){
-		LOG.info("Delete Product details");
+		LOGGER.info("Delete Product details");
 		productJPARepo.deleteById(productId);
 		return new ResponseEntity<String>("[\"Product deleted from table\"]", HttpStatus.OK);	
 	}
 	
 	
 	public Product fallbackAddProduct(Product product) {
-		LOG.info("Fallback Method");
+		LOGGER.info("Fallback Method");
 		return new Product();
 	}
 	
 	
 	public List<Product> fallbackGetProduct() {
-		LOG.info("Fallback Method");
+		LOGGER.info("Fallback Method");
 		return new ArrayList<Product>();
 	}
 	
 	public ResponseEntity<String> fallbackDeleteProduct(Long productId) {
-		LOG.info("Fallback Method");
+		LOGGER.info("Fallback Method");
 		return new ResponseEntity<String>("[\"Hystrix fallback\"]", HttpStatus.OK);
 	}
 	

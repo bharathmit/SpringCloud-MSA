@@ -1,0 +1,3 @@
+23:06:29.124 [restartedMain] INFO  com.jsoftgroup.ProductApplication - No active profile set, falling back to default profiles: default
+23:10:32.527 [restartedMain] INFO  com.jsoftgroup.ProductApplication - No active profile set, falling back to default profiles: default
+23:10:57.119 [restartedMain] INFO  com.jsoftgroup.ProductApplication - Started ProductApplication in 30.356 seconds (JVM running for 31.766)
