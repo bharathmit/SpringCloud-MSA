@@ -1,3 +1,65 @@
 23:06:29.124 [restartedMain] INFO  com.jsoftgroup.ProductApplication - No active profile set, falling back to default profiles: default
 23:10:32.527 [restartedMain] INFO  com.jsoftgroup.ProductApplication - No active profile set, falling back to default profiles: default
 23:10:57.119 [restartedMain] INFO  com.jsoftgroup.ProductApplication - Started ProductApplication in 30.356 seconds (JVM running for 31.766)
+15:09:16.668 [restartedMain] INFO  com.jsoftgroup.ProductApplication - No active profile set, falling back to default profiles: default
+15:12:15.584 [restartedMain] INFO  com.jsoftgroup.ProductApplication - Started ProductApplication in 274.69 seconds (JVM running for 294.445)
+15:12:40.521 [hystrix-ProductAPI-1] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:12:40.523 [hystrix-ProductAPI-1] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:12:40.524 [hystrix-ProductAPI-1] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+15:33:25.340 [restartedMain] INFO  com.jsoftgroup.ProductApplication - No active profile set, falling back to default profiles: default
+15:33:59.706 [restartedMain] INFO  com.jsoftgroup.ProductApplication - Started ProductApplication in 55.191 seconds (JVM running for 57.072)
+15:34:05.805 [hystrix-ProductAPI-1] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:34:05.806 [hystrix-ProductAPI-1] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:34:05.807 [hystrix-ProductAPI-1] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+15:36:33.727 [hystrix-ProductAPI-2] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:36:33.728 [hystrix-ProductAPI-2] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:36:33.728 [hystrix-ProductAPI-2] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+15:40:28.085 [hystrix-ProductAPI-3] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:40:28.086 [hystrix-ProductAPI-3] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:40:28.086 [hystrix-ProductAPI-3] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+15:41:46.390 [hystrix-ProductAPI-4] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:41:46.391 [hystrix-ProductAPI-4] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:41:46.391 [hystrix-ProductAPI-4] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+15:43:04.587 [hystrix-ProductAPI-5] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:43:04.587 [hystrix-ProductAPI-5] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:43:04.590 [hystrix-ProductAPI-5] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+15:44:39.299 [hystrix-ProductAPI-6] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:44:39.300 [hystrix-ProductAPI-6] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:44:39.301 [hystrix-ProductAPI-6] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+15:45:48.030 [hystrix-ProductAPI-7] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:45:48.031 [hystrix-ProductAPI-7] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:45:48.031 [hystrix-ProductAPI-7] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+15:56:09.871 [hystrix-ProductAPI-8] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+15:56:09.871 [hystrix-ProductAPI-8] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+15:56:09.871 [hystrix-ProductAPI-8] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+17:56:43.114 [restartedMain] INFO  com.jsoftgroup.ProductApplication - No active profile set, falling back to default profiles: default
+17:57:20.107 [restartedMain] INFO  com.jsoftgroup.ProductApplication - Started ProductApplication in 67.699 seconds (JVM running for 69.206)
+17:58:02.851 [hystrix-ProductAPI-1] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+17:58:02.855 [hystrix-ProductAPI-1] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+17:58:02.857 [hystrix-ProductAPI-1] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+18:17:23.864 [restartedMain] INFO  com.jsoftgroup.ProductApplication - No active profile set, falling back to default profiles: default
+18:17:55.980 [restartedMain] INFO  com.jsoftgroup.ProductApplication - Started ProductApplication in 39.261 seconds (JVM running for 40.804)
+18:20:02.287 [hystrix-ProductAPI-1] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+18:20:02.288 [hystrix-ProductAPI-1] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+18:20:02.289 [hystrix-ProductAPI-1] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+18:27:40.308 [hystrix-ProductAPI-2] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+18:27:40.309 [hystrix-ProductAPI-2] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+18:27:40.310 [hystrix-ProductAPI-2] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+18:28:20.699 [hystrix-ProductAPI-3] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+18:28:20.700 [hystrix-ProductAPI-3] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+18:28:20.701 [hystrix-ProductAPI-3] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+18:29:11.826 [hystrix-ProductAPI-4] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+18:29:11.827 [hystrix-ProductAPI-4] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+18:29:11.828 [hystrix-ProductAPI-4] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+18:29:19.769 [hystrix-ProductAPI-5] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+18:29:19.769 [hystrix-ProductAPI-5] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+18:29:19.770 [hystrix-ProductAPI-5] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+18:30:58.772 [hystrix-ProductAPI-6] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+18:30:58.773 [hystrix-ProductAPI-6] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+18:30:58.773 [hystrix-ProductAPI-6] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+18:31:01.036 [hystrix-ProductAPI-7] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+18:31:01.037 [hystrix-ProductAPI-7] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+18:31:01.037 [hystrix-ProductAPI-7] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.
+18:36:04.860 [hystrix-ProductAPI-8] INFO  com.jsoftgroup.api.ProductAPI - This is an info message.
+18:36:04.861 [hystrix-ProductAPI-8] WARN  com.jsoftgroup.api.ProductAPI - This is a warn message.
+18:36:04.861 [hystrix-ProductAPI-8] ERROR com.jsoftgroup.api.ProductAPI - This is an error message.

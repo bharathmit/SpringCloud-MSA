@@ -1,11 +1,19 @@
 spring:
   application:
     name: zipkin-server
-  cloud:
-    config:
-      uri: http://localhost:8080
+
+info:
+  app:
+    name: Zipkin Spring Boot Tracking Application
+    description: ${info.app.name} is Running on ${server.port} port
+
 server:
   port: 9411
+  
+management:
+    security:
+        enabled: false
+  
       
 endpoints.cors.allowed-origins: http://localhost:8040
 endpoints.cors.allowed-methods: GET,POST  

@@ -1,16 +1,33 @@
 spring:
   application:
-    name: monitoring
-  cloud:
-    config:
-      uri: http://localhost:8080
+    name: Monitoring Spring Boot Application
+    
 server:
   port: 9410
   
+  
+info:
+  app:
+    name: Monitoring Spring Boot Application
+    description: ${info.app.name} is Running on ${server.port} port
+
+eureka:   
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+
+
 management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
-      base-path: /
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+  
       
