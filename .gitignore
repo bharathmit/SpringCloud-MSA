@@ -22,6 +22,9 @@ bin/
 registry/.idea
 registry/target
 
+config/.idea
+config/target
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
