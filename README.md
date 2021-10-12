@@ -17,7 +17,7 @@ With a pretty neat user interface, by the way.
 #### docker run -d -p 8099:8099 bharathsimbu/config
 
 ### 3 running docker image for API Gateway
-#### docker run -d -p 8010:8040 bharathsimbu/gateway
+#### docker run -d -p 8040:8040 bharathsimbu/gateway
 
 
 ### 4 running docker image for Product Service
