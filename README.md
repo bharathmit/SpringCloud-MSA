@@ -15,3 +15,10 @@ With a pretty neat user interface, by the way.
 
 ### 2 running docker image for Config Server
 #### docker run -d -p 8099:8099 bharathsimbu/config
+
+### 3 running docker image for API Gateway
+#### docker run -d -p 8010:8040 bharathsimbu/gateway
+
+
+### 4 running docker image for Product Service
+#### docker run -d -p 8010:8010 bharathsimbu/product
