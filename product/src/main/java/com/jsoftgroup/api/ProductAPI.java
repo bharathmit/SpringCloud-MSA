@@ -1,5 +1,6 @@
 package com.jsoftgroup.api;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jsoftgroup.entity.Product;
 import com.jsoftgroup.repo.ProductJPARepo;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 
 
 @RestController
@@ -35,7 +36,7 @@ public class ProductAPI {
 	@Autowired
 	ProductJPARepo productJPARepo;
 	
-	@HystrixCommand(fallbackMethod = "fallbackAddProduct")
+	@CircuitBreaker(name = "productAPI", fallbackMethod = "fallbackAddProduct")
 	@RequestMapping(method=RequestMethod.POST)
 	@ApiOperation(value = "Add Product details", notes = "New Product details can be added into server", response = Product.class,
 			authorizations = { @Authorization(value = "OAuth2 authorization resource" , scopes = { @AuthorizationScope(scope = "server", description = "")} ) } )
@@ -44,9 +45,8 @@ public class ProductAPI {
 		LOGGER.info("Add Product details");
 		return productJPARepo.saveAndFlush(product);
 	}
-	
-	
-	@HystrixCommand(fallbackMethod = "fallbackGetProduct")
+
+	@CircuitBreaker(name = "productAPI", fallbackMethod = "fallbackGetProduct")
 	@ApiOperation( value = "List all Product", notes = "Returns a complete list of Product Details", response = Product.class, responseContainer = "List",
 			authorizations = { @Authorization(value = "OAuth2 authorization resource" , scopes = { @AuthorizationScope(scope = "server", description = "")} ) })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful retrieval of All Product details", response = Product.class)})
@@ -58,6 +58,18 @@ public class ProductAPI {
 		LOGGER.warn("This is a warn message.");
 		LOGGER.error("This is an error message.");
 		return productJPARepo.findAll();
+	}
+
+	@CircuitBreaker(name = "productAPI", fallbackMethod = "fallbackDeleteProduct")
+	@ApiOperation(value = "Delete Product details", notes = "Delete Product details from server.", response = Product.class,
+			authorizations = { @Authorization(value = "OAuth2 authorization resource" , scopes = { @AuthorizationScope(scope = "server", description = "")} ) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful deleted the Product detail", response = String.class)})
+	@ApiParam(name = "productId", value = "Unique ID for Product Item ", required = true)
+	@RequestMapping(path="/{productId}",method=RequestMethod.DELETE)
+	public ResponseEntity<String> deleteProduct(@PathVariable("productId") final Long productId){
+		LOGGER.info("Delete Product details");
+		productJPARepo.deleteById(productId);
+		return new ResponseEntity<String>("[\"Product deleted from table\"]", HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "Returns Product detail", notes = "Returns the prodct details by Product ID", response = Product.class,
@@ -79,35 +91,23 @@ public class ProductAPI {
 		LOGGER.info("Update Product Details");
 		return productJPARepo.saveAndFlush(product);
 	}
+
 	
 	
-	@HystrixCommand(fallbackMethod = "fallbackDeleteProduct")
-	@ApiOperation(value = "Delete Product details", notes = "Delete Product details from server.", response = Product.class,
-			authorizations = { @Authorization(value = "OAuth2 authorization resource" , scopes = { @AuthorizationScope(scope = "server", description = "")} ) })
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful deleted the Product detail", response = String.class)})
-	@ApiParam(name = "productId", value = "Unique ID for Product Item ", required = true)
-	@RequestMapping(path="/{productId}",method=RequestMethod.DELETE)
-	public ResponseEntity<String> deleteProduct(@PathVariable("productId") final Long productId){
-		LOGGER.info("Delete Product details");
-		productJPARepo.deleteById(productId);
-		return new ResponseEntity<String>("[\"Product deleted from table\"]", HttpStatus.OK);	
-	}
-	
-	
-	public Product fallbackAddProduct(Product product) {
-		LOGGER.info("Fallback Method");
+	public Product fallbackAddProduct(Product product,Exception exception) {
+		LOGGER.info("Fallback Method Call");
 		return new Product();
 	}
 	
 	
-	public List<Product> fallbackGetProduct() {
-		LOGGER.info("Fallback Method");
+	public List<Product> fallbackGetProduct(Exception exception) {
+		LOGGER.info("Fallback Method Call");
 		return new ArrayList<Product>();
 	}
 	
-	public ResponseEntity<String> fallbackDeleteProduct(Long productId) {
-		LOGGER.info("Fallback Method");
-		return new ResponseEntity<String>("[\"Hystrix fallback\"]", HttpStatus.OK);
+	public ResponseEntity<String> fallbackDeleteProduct(Long productId,Exception exception) {
+		LOGGER.info("Fallback Method Call");
+		return new ResponseEntity<String>("[\"fallback method\"]", HttpStatus.OK);
 	}
 	
 

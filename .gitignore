@@ -25,6 +25,11 @@ registry/target
 config/.idea
 config/target
 
+product/.idea
+product/target
+product/logs
+
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

@@ -4,7 +4,7 @@
 	<springProperty scope="context" name="springAppName" source="spring.application.name"/>
 	
 	<!-- Log base file directory -->
-	<property name="LOG_FILE" value="${BUILD_FOLDER:-logs}/${springAppName}"/>​
+	<property name="LOG_FILE" value="${BUILD_FOLDER:-logs}/${springAppName}"/>
 	
 	
 	<!-- You can override this to have a custom pattern -->
@@ -20,7 +20,7 @@
 		</encoder>
 	</appender>
 
-	<!-- Appender to log to file -->​
+	<!-- Appender to log to file -->
 	<appender name="FileAppender" class="ch.qos.logback.core.FileAppender">
 		<file>${LOG_FILE}</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
