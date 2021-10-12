@@ -29,6 +29,9 @@ product/.idea
 product/target
 product/logs
 
+gateway/.idea
+gateway/target
+
 
 ### NetBeans ###
 /nbproject/private/

@@ -1,0 +1,28 @@
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway
+  config:
+    import: optional:configserver:http://localhost:8099
+
+  cloud:
+    gateway:
+      routes:
+        - id: productService
+          uri: lb://PRODUCT
+          predicates:
+            - Path=/products/**
+        - id: consumerModule
+          uri: lb://SECOND-SERVICE
+          predicates:
+            - Path=/consumer/**
+
+
+server:
+  port: 8040
+
+info:
+  app:
+    name: Spring Boot Gate way Application
+    description: ${info.app.name} is Running on {server.port} port

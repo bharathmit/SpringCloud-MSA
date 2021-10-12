@@ -1,3 +1,4 @@
+/*
 package com.jsoftgroup;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class DocumentationController implements SwaggerResourcesProvider {
 	public List<SwaggerResource> get() {
 		List<SwaggerResource> resources = new ArrayList<>();
 		resources.add(swaggerResource("product", "/api/products/v2/api-docs", "2.0"));
-		resources.add(swaggerResource("inventory", "/api/inventorys/v2/api-docs", "2.0"));		
+		resources.add(swaggerResource("inventory", "/api/inventorys/v2/api-docs", "2.0"));
 		resources.add(swaggerResource("review", "/api/reviews/v2/api-docs", "2.0"));
 		return resources;
 	}
@@ -33,3 +34,4 @@ public class DocumentationController implements SwaggerResourcesProvider {
 	}
 
 }
+*/
