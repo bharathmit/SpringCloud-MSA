@@ -2,7 +2,7 @@ spring:
   application:
     name: product
   config:
-    import: optional:configserver:http://localhost:8099
+    import: optional:configserver:http://192.168.0.109:8099
 
   sleuth:
     sampler.probability: 1
