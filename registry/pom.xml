@@ -15,7 +15,7 @@
 	<packaging>jar</packaging>
 
 	<name>registry</name>
-	<description>registry project for Spring Boot</description>
+	<description>eureka server registry for Spring Boot Project</description>
 
 	<properties>
 		<java.version>1.8</java.version>

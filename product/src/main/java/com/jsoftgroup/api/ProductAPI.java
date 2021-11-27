@@ -79,7 +79,7 @@ public class ProductAPI {
 	@RequestMapping(path="/{productId}",method=RequestMethod.GET)
 	public Product getProductById(@PathVariable("productId") final Long productId){
 		LOGGER.info("Returns Product detail");
-		return productJPARepo.getOne(productId);
+		return productJPARepo.findById(productId).orElse(null);
 	}
 	
 	
