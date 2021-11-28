@@ -22,3 +22,9 @@ With a pretty neat user interface, by the way.
 
 ### 4 running docker image for Product Service
 #### docker run -d --name product -p 8010:8010 bharathsimbu/product
+
+### 5 running docker image for inventory Service
+#### docker run -d --name inventory -p 8020:8020 bharathsimbu/inventory
+
+### 6 running docker image for review Service
+#### docker run -d --name review -p 8030:8030 bharathsimbu/review

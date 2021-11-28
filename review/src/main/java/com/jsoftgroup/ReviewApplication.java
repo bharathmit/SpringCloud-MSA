@@ -28,7 +28,7 @@ public class ReviewApplication {
 		SpringApplication.run(ReviewApplication.class, args);
 	}
 	
-	@Bean
+	/*@Bean
 	public Docket api() throws IOException, XmlPullParserException {
         MavenXpp3Reader reader = new MavenXpp3Reader();
         Model model = reader.read(new FileReader("pom.xml"));
@@ -37,5 +37,5 @@ public class ReviewApplication {
                 .apis(RequestHandlerSelectors.basePackage("com.jsoftgroup.api"))
                 .paths(PathSelectors.any())                          
                 .build().apiInfo(new ApiInfo("Reviw Service Api Documentation", "Documentation automatically generated", model.getParent().getVersion(), null, new Contact("Bharath Mannaperumal", "jsoftgroup.wordpress.com", "bharathkumar.feb14@gmail.com"), null, null));
-	}
+	}*/
 }
