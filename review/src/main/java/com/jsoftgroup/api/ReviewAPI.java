@@ -36,11 +36,11 @@ public class ReviewAPI {
 		LOG.info("getReviews");
 		return reviewJPARepo.findAll();
 	}
-	
+
 	@RequestMapping(path="/{id}",method=RequestMethod.GET)
-	public List<Review> getReviewByProductId(@PathVariable("id") final Long id){
-		LOG.info("getReviewByProductId");
-		return reviewJPARepo.findByProdId(id);
+	public Review getReviewById(@PathVariable("id") final Long id){
+		LOG.info("getReviewById");
+		return reviewJPARepo.findById(id).orElse(null);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT)
@@ -49,19 +49,25 @@ public class ReviewAPI {
 		return reviewJPARepo.saveAndFlush(review);
 	}
 	
-	@RequestMapping(path="/review/{id}",method=RequestMethod.DELETE)
+	@RequestMapping(path="{id}",method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteReview(@PathVariable("id") final Long id){
 		LOG.info("deleteReview");
-		reviewJPARepo.delete(id);
-		return new ResponseEntity<String>("Invoice deleted from table", HttpStatus.OK);	
+		reviewJPARepo.deleteById(id);
+		return new ResponseEntity<String>("Review deleted from table", HttpStatus.OK);
 	}
-	
-	
-	@RequestMapping(path="/product/{id}",method=RequestMethod.DELETE)
+
+
+	@RequestMapping(path="/products/{id}",method=RequestMethod.GET)
+	public List<Review> getReviewByProductId(@PathVariable("id") final Long id){
+		LOG.info("getReviewByProductId");
+		return reviewJPARepo.findByProdId(id);
+	}
+
+	@RequestMapping(path="/products/{id}",method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteByProductId(@PathVariable("id") final Long id){
 		LOG.info("deleteByProductId");
 		reviewJPARepo.deleteByProductId(id);
-		return new ResponseEntity<String>("Invoice deleted from table", HttpStatus.OK);	
+		return new ResponseEntity<String>("Review deleted from table", HttpStatus.OK);
 	}
 	
 	

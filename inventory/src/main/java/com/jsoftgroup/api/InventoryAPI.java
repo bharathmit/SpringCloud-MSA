@@ -40,10 +40,16 @@ public class InventoryAPI {
 		return inventoryJPARepo.findAll();
 	}
 	
-	@RequestMapping(path="/{id}",method=RequestMethod.GET)
+	@RequestMapping(path="products/{id}",method=RequestMethod.GET)
 	public Inventory getInventoryByProductId(@PathVariable("id") final Long id){
 		LOG.info("getInventoryByProductId");
 		return inventoryJPARepo.findByProdId(id);
+	}
+
+	@RequestMapping(path="/{id}",method=RequestMethod.GET)
+	public Inventory getInventoryById(@PathVariable("id") final Long id){
+		LOG.info("getInventoryById");
+		return inventoryJPARepo.findById(id).orElse(null);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT)
@@ -55,8 +61,15 @@ public class InventoryAPI {
 	@RequestMapping(path="/{id}",method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteInventory(@PathVariable("id") final Long id){
 		LOG.info("deleteInventory");
-		inventoryJPARepo.deleteByProductId(id);
+		inventoryJPARepo.deleteById(id);
 		return new ResponseEntity<String>("Inventory deleted from table", HttpStatus.OK);	
+	}
+
+	@RequestMapping(path="products/{id}",method=RequestMethod.DELETE)
+	public ResponseEntity<String> deleteInventoryByProductId(@PathVariable("id") final Long id){
+		LOG.info("getInventoryByProductId");
+		inventoryJPARepo.deleteByProductId(id);
+		return new ResponseEntity<String>("Inventory deleted from table", HttpStatus.OK);
 	}
 	
 	public String getService(String name){

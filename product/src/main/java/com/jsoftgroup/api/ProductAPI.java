@@ -1,5 +1,7 @@
 package com.jsoftgroup.api;
 
+import com.jsoftgroup.feignclient.model.ProductDetail;
+import com.jsoftgroup.service.ProductDetailService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -35,6 +37,9 @@ public class ProductAPI {
 	
 	@Autowired
 	ProductJPARepo productJPARepo;
+
+	@Autowired
+	ProductDetailService productDetailService;
 	
 	@CircuitBreaker(name = "productAPI", fallbackMethod = "fallbackAddProduct")
 	@RequestMapping(method=RequestMethod.POST)
@@ -92,6 +97,19 @@ public class ProductAPI {
 		return productJPARepo.saveAndFlush(product);
 	}
 
+	@RequestMapping(path="/details/{id}",method=RequestMethod.GET)
+	public ProductDetail getProductDetailsById(@PathVariable("id") final Long id){
+		LOGGER.info("get Product details By ID");
+		ProductDetail productDetail=new ProductDetail();
+
+		productDetail.setProduct(getProductById(id));
+
+
+
+		productDetail.setInventory(productDetailService.getInventoryByProductId(id));
+		productDetail.setReview(productDetailService.getReviewByProductId(id));
+		return productDetail;
+	}
 	
 	
 	public Product fallbackAddProduct(Product product,Exception exception) {

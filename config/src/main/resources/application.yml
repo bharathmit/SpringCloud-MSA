@@ -5,7 +5,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/bharathmit/cloud-config                 
-          
+          uri: https://github.com/bharathmit/cloud-config
+          default-label: master
+          clone-on-start: true
 server:
   port: 8099

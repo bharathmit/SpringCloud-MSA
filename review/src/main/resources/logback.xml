@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	
+	<springProperty scope="context" name="springAppName" source="spring.application.name"/>
+	
+	<!-- Log base file directory -->
+	<property name="LOG_FILE" value="${BUILD_FOLDER:-logs}/${springAppName}"/>
+	
+	
+	<!-- You can override this to have a custom pattern -->
+	<property name="CONSOLE_LOG_PATTERN"
+			  			  value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+	
+	
+	<!-- Appender to log to console -->
+	<appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+			<charset>utf8</charset>
+		</encoder>
+	</appender>
+
+	<!-- Appender to log to file -->
+	<appender name="FileAppender" class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_FILE}</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- Appender to log to file in a JSON format -->
+	<appender name="Logstash" class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_FILE}-JSON</file>
+		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+			<providers>
+				<timestamp>
+					<timeZone>UTC</timeZone>
+				</timestamp>
+				<pattern>
+					<pattern>
+						{
+						"severity": "%level",
+						"service": "${springAppName:-}",
+						"trace": "%X{X-B3-TraceId:-}",
+						"span": "%X{X-B3-SpanId:-}",
+						"parent": "%X{X-B3-ParentSpanId:-}",
+						"exportable": "%X{X-Span-Export:-}",
+						"pid": "${PID:-}",
+						"thread": "%thread",
+						"class": "%logger{40}",
+						"rest": "%message"
+						}
+					</pattern>
+				</pattern>
+			</providers>
+		</encoder>
+	</appender>
+
+	<!-- Logging custom package -->
+	<logger name="com.jsoftgroup" level="info" additivity="false">
+		<appender-ref ref="ConsoleAppender"></appender-ref>
+		<appender-ref ref="FileAppender"></appender-ref>
+		<appender-ref ref="Logstash"></appender-ref>
+		
+	</logger>
+	
+
+	<root level="info">
+		<appender-ref ref="ConsoleAppender"></appender-ref>
+	</root>
+</configuration>

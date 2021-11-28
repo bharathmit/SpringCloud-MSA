@@ -25,12 +25,23 @@ registry/target
 config/.idea
 config/target
 
+gateway/.idea
+gateway/target
+
+
 product/.idea
 product/target
 product/logs
 
-gateway/.idea
-gateway/target
+inventory/.idea
+inventory/target
+inventory/logs
+
+review/.idea
+review/target
+review/logs
+
+
 
 
 ### NetBeans ###

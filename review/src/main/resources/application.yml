@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: review
+  config:
+    import: optional:configserver:http://192.168.0.109:8099
+
+  sleuth:
+    sampler.probability: 1
+      
+server:
+  port: 8030
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+    
+    
+  
+      
+  
