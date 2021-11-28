@@ -10,8 +10,7 @@ eureka:
     enable-self-preservation: false
   instance:
     prefer-ip-address: true
-    hostname: ${spring.cloud.client.ip-address}
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
