@@ -1,28 +1,49 @@
 spring:
-  main:
-    web-application-type: reactive
   application:
     name: gateway
   config:
     import: optional:configserver:http://192.168.0.109:8099
 
+  ##GATEWAY CONFIGURATIONS
   cloud:
     gateway:
       routes:
-        - id: productService
+        - id: product-service
           uri: lb://PRODUCT
           predicates:
             - Path=/products/**
-        - id: consumerModule
-          uri: lb://SECOND-SERVICE
+          filters:
+            - RewritePath=/products/(?<segment>.*), /$\{segment}
+        - id: inventory-service
+          uri: lb://INVENTORY
           predicates:
-            - Path=/consumer/**
+            - Path=/inventorys/**
+          filters:
+            - RewritePath=/inventorys/(?<segment>.*), /$\{segment}
+        - id: review-service
+          uri: lb://REVIEW
+          predicates:
+            - Path=/reviews/**
+          filters:
+            - RewritePath=/reviews/(?<segment>.*), /$\{segment}
 
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka
 
 server:
   port: 8040
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 info:
   app:
     name: Spring Boot Gate way Application
-    description: ${info.app.name} is Running on {server.port} port
+    description: ${info.app.name} is Running on ${server.port} port

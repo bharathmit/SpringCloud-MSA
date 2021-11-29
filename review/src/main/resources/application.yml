@@ -9,7 +9,19 @@ spring:
       
 server:
   port: 8030
-    
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka
+
+info:
+  app:
+    name: Spring Boot Review Application
+    description: ${info.app.name} is Running on ${server.port} port
+
 management:
   endpoints:
     web:
