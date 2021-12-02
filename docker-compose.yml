@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  EUREKA_SERVER:
+    image: bharathsimbu/registry
+    container_name: registry
+    ports:
+      - "8761:8761"
+    networks:
+      - spring-microservice-network
+
+  GATEWAY_SERVER:
+    image: bharathsimbu/gateway
+    container_name: gateway
+    depends_on:
+      - EUREKA_SERVER
+    ports:
+      - "8040:8040"
+    networks:
+      - spring-microservice-network
+
+#docker network create -d bridge spring-microservice-network
+networks:
+  spring-microservice-network:
+    external: true

@@ -10,21 +10,24 @@ With a pretty neat user interface, by the way.
 
 ### Run The Docker Image :
 
+Create the Network C2C call : docker network create spring-microservice-network
+
+
 ### 1 running docker image for Eureka Registry
-#### docker run -d --name registry -p 8761:8761 bharathsimbu/registry
+#### docker run -d --network spring-microservice-network --name registry -p 8761:8761 bharathsimbu/registry
 
 ### 2 running docker image for Config Server
-#### docker run -d --name config -p 8099:8099 bharathsimbu/config
+#### docker run -d --network spring-microservice-network --name config -p 8099:8099 bharathsimbu/config
 
 ### 3 running docker image for API Gateway
-#### docker run -d --name gateway -p 8040:8040 bharathsimbu/gateway
+#### docker run -d --network spring-microservice-network --name gateway -p 8040:8040 bharathsimbu/gateway
 
 
 ### 4 running docker image for Product Service
-#### docker run -d --name product -p 8010:8010 bharathsimbu/product
+#### docker run -d --network spring-microservice-network --name product -p 8010:8010 bharathsimbu/product
 
 ### 5 running docker image for inventory Service
-#### docker run -d --name inventory -p 8020:8020 bharathsimbu/inventory
+#### docker run -d --network spring-microservice-network --name inventory -p 8020:8020 bharathsimbu/inventory
 
 ### 6 running docker image for review Service
-#### docker run -d --name review -p 8030:8030 bharathsimbu/review
+#### docker run -d --network spring-microservice-network --name review -p 8030:8030 bharathsimbu/review
