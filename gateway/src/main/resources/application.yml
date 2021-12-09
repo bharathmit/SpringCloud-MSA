@@ -28,9 +28,15 @@ spring:
             - RewritePath=/reviews/(?<segment>.*), /$\{segment}
 
 eureka:
+  instance:
+    hostname: registry
   client:
+    register-with-eureka: true
     service-url:
-      defaultZone: http://registry:8761/eureka
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka
+    healthcheck:
+      enabled: true
+
 
 server:
   port: 8040

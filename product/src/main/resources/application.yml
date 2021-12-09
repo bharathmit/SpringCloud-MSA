@@ -14,8 +14,11 @@ eureka:
   instance:
     hostname: registry
   client:
+    register-with-eureka: true
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka
+    healthcheck:
+      enabled: true
 
 info:
   app:
