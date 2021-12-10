@@ -24,10 +24,23 @@ Create the Network C2C call : docker network create spring-microservice-network
 
 
 ### 4 running docker image for Product Service
-#### docker run -d --network spring-microservice-network --name product -p 8010:8010 bharathsimbu/product
+#### docker run -d --network spring-microservice-network --name product --link gateway -p 8010:8010 bharathsimbu/product
 
 ### 5 running docker image for inventory Service
 #### docker run -d --network spring-microservice-network --name inventory -p 8020:8020 bharathsimbu/inventory
 
 ### 6 running docker image for review Service
 #### docker run -d --network spring-microservice-network --name review -p 8030:8030 bharathsimbu/review
+
+
+docker ps -a 
+
+docker rmi bharathsimbu/product
+
+docker-compose up -d
+
+docker-compose down
+
+
+SCALE
+docker-compose up --scale product=2 product
