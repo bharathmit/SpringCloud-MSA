@@ -42,5 +42,8 @@ docker-compose up -d
 docker-compose down
 
 
-SCALE
+#SCALE
 docker-compose up --scale product=2 product
+
+#remove all unused volume
+docker volume prune

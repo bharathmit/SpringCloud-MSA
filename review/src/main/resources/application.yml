@@ -2,7 +2,7 @@ spring:
   application:
     name: review
   config:
-    import: optional:configserver:http://192.168.0.109:8099
+    import: optional:configserver:http://localhost:8099
 
   sleuth:
     sampler.probability: 1
@@ -13,9 +13,13 @@ server:
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true
   client:
+    register-with-eureka: true
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka
+    healthcheck:
+      enabled: true
 
 info:
   app:

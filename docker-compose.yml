@@ -35,7 +35,37 @@ services:
       - ":8010"
     networks:
       - spring-microservice-network    
-
+      
+  review:
+    image: bharathsimbu/review
+    container_name: review
+    restart: always
+    deploy:
+      replicas: 1
+    depends_on:
+      - registry
+    environment:
+      - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka"
+    ports:
+      - "8030:8030"
+    networks:
+      - spring-microservice-network  
+      
+  inventory:
+    image: bharathsimbu/inventory
+    container_name: inventory
+    restart: always
+    deploy:
+      replicas: 1
+    depends_on:
+      - registry
+    environment:
+      - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka"
+    ports:
+      - "8020:8020"
+    networks:
+      - spring-microservice-network
+      
 #docker network create -d bridge spring-microservice-network
 networks:
   spring-microservice-network:
