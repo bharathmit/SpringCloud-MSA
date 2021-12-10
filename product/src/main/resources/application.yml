@@ -2,17 +2,18 @@ spring:
   application:
     name: product
   config:
-    import: optional:configserver:http://192.168.0.109:8099
+    import: optional:configserver:http://localhost:8099
 
   sleuth:
     sampler.probability: 1
-      
+
 server:
   port: 8010
 
 eureka:
   instance:
-    hostname: registry
+    hostname: localhost
+    prefer-ip-address: true
   client:
     register-with-eureka: true
     service-url:

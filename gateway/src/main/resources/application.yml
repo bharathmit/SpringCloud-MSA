@@ -2,7 +2,7 @@ spring:
   application:
     name: gateway
   config:
-    import: optional:configserver:http://192.168.0.109:8099
+    import: optional:configserver:http://localhost:8099
 
   ##GATEWAY CONFIGURATIONS
   cloud:
@@ -29,7 +29,8 @@ spring:
 
 eureka:
   instance:
-    hostname: registry
+    hostname: localhost
+    prefer-ip-address: true
   client:
     register-with-eureka: true
     service-url:

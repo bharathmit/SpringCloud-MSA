@@ -1,22 +1,40 @@
 version: '3.4'
 services:
-  EUREKA_SERVER:
+  registry:
     image: bharathsimbu/registry
     container_name: registry
+    restart: always
     ports:
       - "8761:8761"
     networks:
       - spring-microservice-network
 
-  GATEWAY_SERVER:
+  gateway:
     image: bharathsimbu/gateway
     container_name: gateway
+    restart: always
     depends_on:
-      - EUREKA_SERVER
+      - registry
+    environment:
+      - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka"
     ports:
       - "8040:8040"
     networks:
       - spring-microservice-network
+      
+  product:
+    image: bharathsimbu/product
+    restart: always
+    deploy:
+      replicas: 2
+    depends_on:
+      - registry
+    environment:
+      - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka"
+    ports:
+      - ":8010"
+    networks:
+      - spring-microservice-network    
 
 #docker network create -d bridge spring-microservice-network
 networks:
