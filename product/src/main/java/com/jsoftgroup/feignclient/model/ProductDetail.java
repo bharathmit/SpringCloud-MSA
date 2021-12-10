@@ -1,5 +1,6 @@
 package com.jsoftgroup.feignclient.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jsoftgroup.entity.Product;
 import lombok.Data;

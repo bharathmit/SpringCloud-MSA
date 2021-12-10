@@ -33,6 +33,23 @@ management:
       exposure:
         include: "*"
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      reviewSearch:
+        failure-rate-threshold: 30  #The Threshold Percentage Above Which the Circuit Breaker will move from Closed to Open State.
+        wait-duration-in-open-state: 60000  #Time in milliseconds, in which the circuit breaker is to stay in open state before moving to half-open state
+        permitted-number-of-calls-in-half-open-state: 3
+        minimum-number-of-calls: 10  #The number of calls after which the error rate is calculated. I have assigned it with a small value for test purpose.
+  retry:
+    instances:
+      reviewSearch:
+        maxRetryAttempts: 3
+        waitDuration: 3s
+      inventorySearch:
+        maxRetryAttempts: 3
+        waitDuration: 3s
+
     
     
   

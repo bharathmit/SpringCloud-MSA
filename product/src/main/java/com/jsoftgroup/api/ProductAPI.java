@@ -103,10 +103,7 @@ public class ProductAPI {
 		ProductDetail productDetail=new ProductDetail();
 
 		productDetail.setProduct(getProductById(id));
-
-
-
-		productDetail.setInventory(productDetailService.getInventoryByProductId(id));
+		//productDetail.setInventory(productDetailService.getInventoryByProductId(id));
 		productDetail.setReview(productDetailService.getReviewByProductId(id));
 		return productDetail;
 	}
