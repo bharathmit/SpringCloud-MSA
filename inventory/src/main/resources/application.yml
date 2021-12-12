@@ -3,7 +3,8 @@ spring:
     name: inventory
   config:
     import: optional:configserver:http://localhost:8099
-
+  profiles:
+    active: local
   sleuth:
     sampler.probability: 1
       
