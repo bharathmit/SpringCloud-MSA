@@ -1,0 +1,4 @@
+info:
+  app:
+    name: Spring Boot Product DEV Profile Application
+    description: ${info.app.name} is Running on ${server.port} port

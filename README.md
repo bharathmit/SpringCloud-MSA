@@ -47,3 +47,11 @@ docker-compose up --scale product=2 product
 
 #remove all unused volume
 docker volume prune
+
+
+
+### Changing the Logging Level at the Runtime for a Spring Boot Application
+#### access our log API: http://localhost:8010/actuator/loggers
+#### To change the logging level, we can issue a POST request to the /loggers endpoint.
+#### POST request http://localhost:8080/actuator/loggers/com.jsoftgroup {"configuredLevel":"TRACE","effectiveLevel":"TRACE"}
+

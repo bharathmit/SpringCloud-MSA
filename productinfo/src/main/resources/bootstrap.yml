@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: productinfo
-  cloud:
-    config:
-      uri: http://localhost:8080 
-
-server:
-  port: 8050
