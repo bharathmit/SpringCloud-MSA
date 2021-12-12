@@ -1,0 +1,4 @@
+info:
+  app:
+    name: Spring Boot Review LOCAL Profile Application
+    description: ${info.app.name} is Running on ${server.port} port

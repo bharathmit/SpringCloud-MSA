@@ -3,7 +3,8 @@ spring:
     name: review
   config:
     import: optional:configserver:http://localhost:8099
-
+  profiles:
+    default: local
   sleuth:
     sampler.probability: 1
       
