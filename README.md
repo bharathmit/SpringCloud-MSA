@@ -1,8 +1,6 @@
 # SpringCloud-MSA
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbharathmit%2FSpringCloud-MSA.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbharathmit%2FSpringCloud-MSA?ref=badge_shield)
 
-https://app.fossa.com/reports/279cb3c9-0901-4505-b9db-0c10afa83480
-
 Micro Service Architecture with Spring Boot and Spring Cloud
 
 This is a [proof-of-concept application](https://jsoftgroup.wordpress.com/2017/05/09/micro-service-using-spring-cloud-and-netflix-oss/), which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot, Spring Cloud and Docker.
