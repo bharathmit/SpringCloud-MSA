@@ -1,4 +1,6 @@
 # SpringCloud-MSA
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbharathmit%2FSpringCloud-MSA.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbharathmit%2FSpringCloud-MSA?ref=badge_shield)
+
 Micro Service Architecture with Spring Boot and Spring Cloud
 
 This is a [proof-of-concept application](https://jsoftgroup.wordpress.com/2017/05/09/micro-service-using-spring-cloud-and-netflix-oss/), which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot, Spring Cloud and Docker.
@@ -55,3 +57,7 @@ docker volume prune
 #### To change the logging level, we can issue a POST request to the /loggers endpoint.
 #### POST request http://localhost:8080/actuator/loggers/com.jsoftgroup {"configuredLevel":"TRACE","effectiveLevel":"TRACE"}
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbharathmit%2FSpringCloud-MSA.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbharathmit%2FSpringCloud-MSA?ref=badge_large)
