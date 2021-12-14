@@ -31,10 +31,14 @@ services:
       - registry
     environment:
       - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka"
+      - "SPRING_PROFILES_ACTIVE=dev"
     ports:
       - ":8010"
     networks:
-      - spring-microservice-network    
+      - spring-microservice-network
+    labels:
+      collect_logs_with_filebeat: "true"
+      decode_log_event_to_json_object: "true"
       
   review:
     image: bharathsimbu/review
@@ -46,10 +50,14 @@ services:
       - registry
     environment:
       - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka"
+      - "SPRING_PROFILES_ACTIVE=dev"
     ports:
       - "8030:8030"
     networks:
       - spring-microservice-network  
+    labels:
+      collect_logs_with_filebeat: "true"
+      decode_log_event_to_json_object: "true"
       
   inventory:
     image: bharathsimbu/inventory
@@ -61,10 +69,14 @@ services:
       - registry
     environment:
       - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka"
+      - "SPRING_PROFILES_ACTIVE=dev"
     ports:
       - "8020:8020"
     networks:
       - spring-microservice-network
+    labels:
+      collect_logs_with_filebeat: "true"
+      decode_log_event_to_json_object: "true"
       
 #docker network create -d bridge spring-microservice-network
 networks:

@@ -1,0 +1,68 @@
+version: "3.5"
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data:rw        # Persistence data
+    networks:
+      - spring-microservice-network
+    healthcheck:
+      test: "curl -f http://localhost:9200 || exit 1"
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.2.0
+    container_name: logstash
+    restart: on-failure
+    ports:
+      - "25826:25826"
+      - "5044:5044"
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro          # Pipeline configuration
+    depends_on:
+      - elasticsearch
+    networks:
+      - spring-microservice-network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.2.0
+    container_name: kibana
+    restart: on-failure
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
+    networks:
+      - spring-microservice-network
+    healthcheck:
+      test: "curl -f http://localhost:5601 || exit 1"
+      
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.2.0
+    command: filebeat -e -strict.perms=false                                 # read permission
+    container_name: filebeat
+    volumes:
+      - ./filebeat/filebeat_config.yml:/usr/share/filebeat/filebeat.yml:ro   # Configuration file
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro             # Docker logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro                         # Additional information about containers
+      - ./filebeat/data:/usr/share/filebeat/data:rw                          # Persistence data
+    user: root                                                               # Allow access to log files and docker.sock
+    restart: on-failure
+    depends_on:
+      - logstash
+    networks:
+      - spring-microservice-network
+    
+
+#docker network create -d bridge spring-microservice-network
+networks:
+  spring-microservice-network:
+    external: true

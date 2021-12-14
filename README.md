@@ -42,11 +42,11 @@ docker-compose up -d
 docker-compose down
 
 
-#SCALE
-docker-compose up --scale product=2 product
+###SCALE
+#### docker-compose up --scale product=2 product
 
-#remove all unused volume
-docker volume prune
+###remove all unused volume
+#### docker volume prune
 
 
 
@@ -54,4 +54,20 @@ docker volume prune
 #### access our log API: http://localhost:8010/actuator/loggers
 #### To change the logging level, we can issue a POST request to the /loggers endpoint.
 #### POST request http://localhost:8080/actuator/loggers/com.jsoftgroup {"configuredLevel":"TRACE","effectiveLevel":"TRACE"}
+
+
+
+###  ELF
+
+https://cassiomolin.com/2019/06/30/log-aggregation-with-spring-boot-elastic-stack-and-docker/
+
+
+
+
+
+
+
+
+
+
 
