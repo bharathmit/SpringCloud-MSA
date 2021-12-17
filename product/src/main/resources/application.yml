@@ -31,12 +31,15 @@ info:
 
 
 management:
+  endpoint:
+    health:
+      show-details: always
   endpoints:
     loggers:
       enabled: true
     web:
       exposure:
-        include: "*"
+        include: '*'
 
 resilience4j:
   circuitbreaker:
