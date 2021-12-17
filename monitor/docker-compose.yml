@@ -3,16 +3,11 @@ services:
 
   prometheus:
     container_name: prometheus
-    image: prom/prometheus
+    image: prom/prometheus:v2.27.1
     ports:
-      - 9090:9090
+      - "9090:9090"
     networks:
       - spring-microservice-network
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://prometheus:9090" ]
-      interval: 10s
-      timeout: 10s
-      retries: 10
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
   
@@ -20,14 +15,9 @@ services:
     container_name: grafana
     image: grafana/grafana:7.5.7
     ports:
-      - 3030:3030
+      - "3000:3000"
     networks:
       - spring-microservice-network
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://grafana:3030" ]
-      interval: 10s
-      timeout: 10s
-      retries: 10
 
 #docker network create -d bridge spring-microservice-network
 networks:

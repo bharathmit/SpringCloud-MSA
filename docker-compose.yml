@@ -24,16 +24,17 @@ services:
       
   product:
     image: bharathsimbu/product
+    container_name: product
     restart: always
     deploy:
-      replicas: 2
+      replicas: 1
     depends_on:
       - registry
     environment:
       - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka"
       - "SPRING_PROFILES_ACTIVE=dev"
     ports:
-      - ":8010"
+      - "8010:8010"
     networks:
       - spring-microservice-network
     labels:

@@ -44,10 +44,10 @@ docker-compose up -d
 docker-compose down
 
 
-###SCALE
+### SCALE
 #### docker-compose up --scale product=2 product
 
-###remove all unused volume
+### Remove all unused volume
 #### docker volume prune
 
 
@@ -63,6 +63,10 @@ docker-compose down
 ###  ELF
 
 https://cassiomolin.com/2019/06/30/log-aggregation-with-spring-boot-elastic-stack-and-docker/
+
+### Monitor
+
+https://datamify.com/spring/spring-boot-monitoring-actuator-prometheus-grafana/
 
 
 

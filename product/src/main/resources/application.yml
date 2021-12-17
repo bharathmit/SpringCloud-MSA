@@ -31,6 +31,8 @@ info:
 
 
 management:
+  metrics:
+    tags: ${spring.application.name}
   endpoint:
     health:
       show-details: always
