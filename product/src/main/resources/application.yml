@@ -29,10 +29,18 @@ info:
     name: Spring Boot Product Application
     description: ${info.app.name} is Running on ${server.port} port
 
+app:
+  api:
+    logging:
+      enable: true
+      url-patterns: "*"
+
+
 
 management:
   metrics:
-    tags: ${spring.application.name}
+    tags:
+      application: ${spring.application.name}
   endpoint:
     health:
       show-details: always
