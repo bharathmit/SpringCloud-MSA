@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +34,15 @@ public class InventoryAPI {
 		LOG.info("addInventory");
 		return inventoryJPARepo.saveAndFlush(inventory);
 	}
-	
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Inventory> getInventorys(){
 		LOG.info("getInventorys");
 		return inventoryJPARepo.findAll();
 	}
-	
+
+	@PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')")
 	@RequestMapping(path="products/{id}",method=RequestMethod.GET)
 	public Inventory getInventoryByProductId(@PathVariable("id") final Long id){
 		LOG.info("getInventoryByProductId");

@@ -7,9 +7,17 @@ spring:
     active: local
   sleuth:
     sampler.probability: 1
-      
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/spring-msa
 server:
   port: 8020
+
+client:
+  registration: gateway-service
 
 eureka:
   instance:
@@ -28,7 +36,8 @@ info:
 
 management:
   metrics:
-    tags: ${spring.application.name}
+    tags:
+      application: ${spring.application.name}
   endpoints:
     web:
       exposure:

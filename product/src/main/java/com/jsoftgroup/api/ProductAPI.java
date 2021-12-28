@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +57,7 @@ public class ProductAPI {
 			authorizations = { @Authorization(value = "OAuth2 authorization resource" , scopes = { @AuthorizationScope(scope = "server", description = "")} ) })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful retrieval of All Product details", response = Product.class)})
 	@RequestMapping(method=RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public List<Product> getProducts(){
 		LOGGER.trace("This is a trace message. ");
 		LOGGER.debug("This is a debug message.");
@@ -82,6 +84,7 @@ public class ProductAPI {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful retrieval of Product detail", response = Product.class)})
 	@ApiParam(name = "productId", value = "Unique ID for Product Item ", required = true)
 	@RequestMapping(path="/{productId}",method=RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')")
 	public Product getProductById(@PathVariable("productId") final Long productId){
 		LOGGER.info("Returns Product detail");
 		return productJPARepo.findById(productId).orElse(null);

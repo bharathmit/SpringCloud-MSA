@@ -8,10 +8,29 @@ spring:
   sleuth:
     sampler.probability: 1
   profiles:
-    default: dev
+    default: local
+
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/spring-msa
+          #jwk-set-uri: http://localhost:8080/auth/realms/spring-msa/protocol/openid-connect/certs
 
 server:
-  port: 8010
+  port : 8010
+
+
+client:
+  registration: gateway-service
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+
 
 eureka:
   instance:
