@@ -13,6 +13,21 @@ spring:
 
   security:
     oauth2:
+      client:
+        registration:
+          product-service:
+            provider: keyclock
+            client-id: product-service
+            client-secret: 7f6133b2-f72e-4c1c-86f8-6bbdb5e33250
+            authorization-grant-type: client_credentials
+            scope: read
+            client-name: product-service
+        provider:
+          keyclock:
+            authorization-uri: http://localhost:8080/auth/realms/spring-msa/protocol/openid-connect/auth
+            issuer-uri: http://localhost:8080/auth/realms/spring-msa
+            token-uri: http://localhost:8080/auth/realms/spring-msa/protocol/openid-connect/token
+
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/auth/realms/spring-msa

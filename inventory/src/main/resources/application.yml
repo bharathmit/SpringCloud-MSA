@@ -17,7 +17,7 @@ server:
   port: 8020
 
 client:
-  registration: gateway-service
+  registration: gateway-service, product-service
 
 eureka:
   instance:
@@ -33,6 +33,13 @@ info:
   app:
     name: Spring Boot Inventory Application
     description: ${info.app.name} is Running on ${server.port} port
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+
 
 management:
   metrics:

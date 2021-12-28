@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "inventory", url = "http://localhost:8020/" )
+@FeignClient(name = "inventory", url = "http://localhost:8020/" , configuration = InventoryFeignClientConfig.class)
 public interface InventoryClient {
 
     final Logger logger = LoggerFactory.getLogger(InventoryClient.class);
