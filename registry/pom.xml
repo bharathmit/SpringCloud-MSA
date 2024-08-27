@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.5</version>
+		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -18,8 +18,8 @@
 	<description>eureka server registry for Spring Boot Project</description>
 
 	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>2020.0.4</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2023.0.3</spring-cloud.version>
 		<docker.image.prefix>bharathsimbu</docker.image.prefix>
 	</properties>
 	<dependencies>
@@ -34,6 +34,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -56,7 +57,16 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.12</version>
+				<version>1.4.13</version>
+				 <executions>
+				   <execution>
+				     <id>default</id>
+				     <goals>
+				       <goal>build</goal>
+				       <goal>push</goal>
+				     </goals>
+				   </execution>
+				 </executions>
 				<configuration>
 					<repository>${docker.image.prefix}/${project.artifactId}</repository>
 					<buildArgs>
