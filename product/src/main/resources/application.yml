@@ -1,7 +1,7 @@
 
 spring:
   application:
-    name: product
+    name: product-service
   config:
     import: optional:configserver:http://localhost:8099
 
@@ -11,6 +11,8 @@ spring:
     default: dev
 
 server:
+  servlet:
+    context-path: /
   port: 8010
 
 eureka:
@@ -35,9 +37,22 @@ app:
       enable: true
       url-patterns: "*"
 
+openapi:
+  service:
+    title: products-service doc
+    version: 1.0.0
+    url: http://localhost:8080
+
+springdoc:
+  api-docs:
+    path: /product-service/v3/api-docs
+  swagger-ui:
+    path: /product-service/swagger-ui.html
 
 
 management:
+  info:
+    env.enabled: true
   metrics:
     tags:
       application: ${spring.application.name}

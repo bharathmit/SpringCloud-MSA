@@ -20,6 +20,11 @@ import com.jsoftgroup.repo.ProductJPARepo;
 import com.jsoftgroup.service.ProductDetailService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 
 
@@ -36,10 +41,14 @@ public class ProductAPI {
 	ProductDetailService productDetailService;
 	
 	@CircuitBreaker(name = "productAPI", fallbackMethod = "fallbackAddProduct")
+	@Operation(summary  = "Add Product details", description = "New Product details can be added into server", 
+	requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema =@Schema(implementation = Product.class) ) ))
+	@ApiResponses(value = { @ApiResponse(responseCode  = "200", description = "Successful added into Product details", 
+	content = @Content(schema =@Schema(implementation = Product.class) ) )})
 	@RequestMapping(method=RequestMethod.POST)
 	public Product addProduct(@RequestBody Product product){
 		LOGGER.info("Add Product details");
-		return productJPARepo.saveAndFlush(product);
+		return productJPARepo.saveAndFlush(product);	
 	}
 
 	@CircuitBreaker(name = "productAPI", fallbackMethod = "fallbackGetProduct")

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: gateway
+    name: api-gateway-service
   config:
     import: optional:configserver:http://localhost:8099
 
@@ -9,21 +9,21 @@ spring:
     gateway:
       routes:
         - id: product-service
-          uri: lb://PRODUCT
+          uri: lb://product-service
           predicates:
-            - Path=/products/**
+            - Path=/products/** , /product-service/v3/api-docs
           filters:
             - RewritePath=/products/(?<segment>.*), /$\{segment}
         - id: inventory-service
-          uri: lb://INVENTORY
+          uri: lb://inventory-service
           predicates:
-            - Path=/inventorys/**
+            - Path=/inventorys/** , /inventory-service/v3/api-docs
           filters:
             - RewritePath=/inventorys/(?<segment>.*), /$\{segment}
         - id: review-service
-          uri: lb://REVIEW
+          uri: lb://review-service
           predicates:
-            - Path=/reviews/**
+            - Path=/reviews/** , /review-service/v3/api-docs
           filters:
             - RewritePath=/reviews/(?<segment>.*), /$\{segment}
 
@@ -43,10 +43,34 @@ server:
   port: 8040
 
 management:
+  info:
+    env.enabled: true
   endpoints:
     web:
       exposure:
         include: "*"
+
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: API Gateway Service
+        primaryName: API Gateway Service
+      - url: /product-service/v3/api-docs
+        name: Product Service
+        primaryName: Products Service
+      - url: /inventory-service/v3/api-docs
+        name: Inventory Service
+        primaryName: Inventory Service
+      - url: /review-service/v3/api-docs
+        name: Review Service
+        primaryName: Reviews Service
 
 info:
   app:
