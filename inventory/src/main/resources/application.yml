@@ -27,8 +27,11 @@ info:
     description: ${info.app.name} is Running on ${server.port} port
 
 management:
+  info:
+    env.enabled: true
   metrics:
-    tags: ${spring.application.name}
+    tags: 
+      application: ${spring.application.name}
   endpoints:
     web:
       exposure:

@@ -24,6 +24,10 @@
 		<docker.image.prefix>bharathsimbu</docker.image.prefix>
 		<logstash.version>8.0</logstash.version>
 		<springdoc.version>2.6.0</springdoc.version>
+		<powermock.version>2.0.9</powermock.version>
+		<junitparams.version>1.1.1</junitparams.version>
+		<jacoco.version>0.8.12</jacoco.version>
+		<cobertura.version>2.7</cobertura.version>
 	</properties>
 
 	<dependencies>
@@ -100,22 +104,21 @@
 		<dependency>
 		    <groupId>org.powermock</groupId>
 		    <artifactId>powermock-module-junit4</artifactId>
-		    <version>1.6.2</version>
+		    <version>${powermock.version}</version>
 		    <scope>test</scope>
 		</dependency>
 		 
 		<dependency>
 		    <groupId>org.powermock</groupId>
-		    <artifactId>powermock-api-mockito</artifactId>
-		    <version>1.6.2</version>
+		    <artifactId>powermock-api-mockito2</artifactId>
+		    <version>${powermock.version}</version>
 		    <scope>test</scope>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/pl.pragmatists/JUnitParams -->
 		<dependency>
 		    <groupId>pl.pragmatists</groupId>
 		    <artifactId>JUnitParams</artifactId>
-		    <version>1.1.0</version>
+		    <version>${junitparams.version}</version>
 		    <scope>test</scope>
 		</dependency>
 		
@@ -160,7 +163,7 @@
 			<plugin>
 			    <groupId>org.jacoco</groupId>
 			    <artifactId>jacoco-maven-plugin</artifactId>
-			    <version>0.7.9</version>
+			    <version>${jacoco.version}</version>
 			    <executions>
 			        <execution>
 			            <goals>
@@ -181,7 +184,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.7</version>
+				<version>${cobertura.version}</version>
 				<configuration>
 					<formats>
 						<format>html</format>
